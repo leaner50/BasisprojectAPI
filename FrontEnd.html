@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="FrontEnd.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</head>
+<body class="container"> 
+    <h1>Front End</h1> 
+    <div class="leftpanel">
+    <h2>Search for a movie by id</h2>
+    <div x-data="{
+        movie: null,
+        getMovie() {
+            fetch('https://movies-service-leaner50.cloud.okteto.net/movies/' + movieId.value)
+            .then(response => response.json())
+            .then(data => this.movie = data)
+            console.log(this.movie)
+        }
+    }">
+        <input type="text" id="movieId">
+        <button @click="getMovie()">Search</button>
+        <div>
+            <p><span x-text="movie?.error"></span></p>
+            <p>Title: <span x-text="movie?.name"></span></p>
+            <p>Year: <span x-text="movie?.year"></span></p>
+            <p>Genre: <span x-text="movie?.genre"></span></p>
+            <p>Director: <span x-text="movie?.director"></span></p>
+            <p>Actors: <span x-text="movie?.actors"></span></p>
+            <p>Description: <span x-text="movie?.description"></span></p>
+        </div> 
+    </div>
+    </div>
+    
+    <div class="midpanel">
+    <h2>Search for a movie by genre</h2>
+    <div x-data="{
+        movies: null,
+        genre: '',
+        getMovies() {
+            fetch('https://movies-service-leaner50.cloud.okteto.net/movies/genre/' + this.genre)
+            .then(response => response.json())
+            .then(data => this.movies = data)
+            console.log(this.movies)
+        }
+    }">
+        <input type="text" placeholder="Genre" x-model="genre">
+        <button @click="getMovies()">Search</button>
+        <div>   
+            <ul>
+                <template x-for="movie in movies" :key="index">
+                    <li x-text="movie.name + ' ' + movie.year"></li>
+                </template>                
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="rightpanel">
+    <h2>Add a movie</h2>
+    <div x-data="{
+        movie: {
+            name: '',
+            year: '',
+            genre: '',
+            director: '',
+            actors: '',
+            description: ''
+        },
+        sendMovie() {
+            fetch('https://movies-service-leaner50.cloud.okteto.net/movies/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.movie)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+        }
+    }">
+    
+        <input type="text" placeholder="Name" x-model="movie.name">
+        <input type="text" placeholder="Year" x-model="movie.year">
+        <input type="text" placeholder="Genre" x-model="movie.genre">
+        <input type="text" placeholder="Director" x-model="movie.director">
+        <input type="text" placeholder="Actors" x-model="movie.actors">
+        <input type="text" placeholder="Description" x-model="movie.description">
+        <button @click="sendMovie()">Send</button>  
+    </div>
+    </div>
+</div>
+</body>
+</html>
