@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie API - API Development project</title>
+    <meta author="Leanderr Van Bael">
     <link rel="stylesheet" href="FrontEnd.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -22,17 +23,19 @@
             console.log(this.movie)
         }
     }">
-        <input type="text" id="movieId">
+        <input type="text" id="movieId" placeholder="A number higher than 0">
         <button @click="getMovie()">Search</button>
         <div>
             <p><span x-text="movie?.error"></span></p>
-            <p><span x-text="Title: + ' ' + movie?.name"></span></p>
-            <p><span x-text="Year: + ' ' +movie?.year"></span></p>
-            <p><span x-text="Genre: + ' ' +movie?.genre"></span></p>
-            <p><span x-text="Director: + ' ' +movie?.director"></span></p>
-            <p><span x-text="Actors: + ' ' +movie?.actors"></span></p>
-            <p><span x-text="Description: + ' ' + movie?.description"></span></p>
-        </div> 
+            <div x-show="movie?.name">
+                <p><strong>Title: </strong> <span x-text="movie?.name"></span></p>
+                <p><strong>year: </strong> <span x-text="movie?.year"></span></p>
+                <p><strong>Genre: </strong><span x-text="movie?.genre"></span></p>
+                <p><strong>Director: </strong><span x-text="movie?.director"></span></p>
+                <p><strong>Actors:</strong> <span x-text="movie?.actors"></span></p>
+                <p><strong>Description:</strong> <span x-text="movie?.description"></span></p>
+            </div>
+        </div>
     </div>
     </div>
     
@@ -40,7 +43,7 @@
     <h2>Search for a movie by genre</h2>
     <div x-data="{
         movies: null,
-        genre: '',
+        genre : null,
         getMovies() {
             fetch('https://movies-service-leaner50.cloud.okteto.net/movies/genre/' + this.genre)
             .then(response => response.json())
@@ -50,18 +53,23 @@
     }">
         <input type="text" placeholder="Genre" x-model="genre">
         <button @click="getMovies()">Search</button>
-        <div>   
-            <ul>
-                <template x-for="movie in movies" :key="index">
-                    <li x-text="movie.name + ' ' + movie.year"></li>
-                </template>                
-            </ul>
+        <div>
+            <div x-show="!movies.error">
+                <ul>
+                    <template x-for="movie in movies" :key="index">
+                        <li x-text="movie?.name + ' ' + movie?.year"></li>
+                    </template>                
+                </ul>
+            </div>
+            <p><span x-text="movies?.error"></span></p>
+            
         </div>
     </div>
     </div>
     <div class="rightpanel">
     <h2>Add a movie</h2>
     <div x-data="{
+        message : null,
         movie: {
             name: '',
             year: '',
@@ -79,6 +87,7 @@
                 body: JSON.stringify(this.movie)
             })
             .then(response => response.json())
+            .then(data => this.message = data)
             .then(data => console.log(data))
         }
     }">
@@ -89,9 +98,12 @@
         <input type="text" placeholder="Director" x-model="movie.director">
         <input type="text" placeholder="Actors" x-model="movie.actors">
         <input type="text" placeholder="Description" x-model="movie.description">
-        <button @click="sendMovie()">Send</button>  
+        <button @click="sendMovie()">Add Movie</button>  
+        <p><span x-text="message?.success"></span></p>
+        <p><span x-text="message?.error"></span></p>
+
     </div>
     </div>
 </div>
 </body>
-</html> 
+</html>

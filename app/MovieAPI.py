@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+
 origins = [
-    "http://localhost",
     "https://leaner50.github.io"
 ]
 
@@ -48,6 +48,8 @@ def get_movies():
 
 @app.get("/movies/{movie_id}")
 def get_movie(movie_id: int):
+    if movie_id < 0:
+        return {"error": "Please enter a valid id"}
     if movie_id not in movies:
         return {"error": "There is no movie with id: " + str(movie_id)}
     return movies[movie_id]
