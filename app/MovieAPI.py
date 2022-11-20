@@ -6,7 +6,9 @@ app = FastAPI()
 
 origins = [
     "http://localhost",
-    "https://leaner50.github.io"
+    "https://leaner50.github.io",
+    "https://leaner50.github.io/",
+    "https://leaner50.github.io/BasisprojectAPI/"
 ]
 
 app.add_middleware(
