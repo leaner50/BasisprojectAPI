@@ -30,7 +30,7 @@ The API is used to communicate with python files and the frontend. The API is ca
 
 Url: https://movies-service-leaner50.cloud.okteto.net
 
-(If this api is used regurlarly it will go to sleep and not work. If this is the case please contact me and I will wake it up)
+(If the api is not used regurlarly it will go to sleep mode and will not work anymore. If this is the case please contact me and I will wake it up again.)
 
 ## API Frontend
 The frontend is developed using HTML, CSS and Alpine Js. The frontend can be used to communicate with the API. You can use the functions to get or post data to the api.
