@@ -26,12 +26,12 @@
         <button @click="getMovie()">Search</button>
         <div>
             <p><span x-text="movie?.error"></span></p>
-            <p>Title: <span x-text="movie?.name"></span></p>
-            <p>Year: <span x-text="movie?.year"></span></p>
-            <p>Genre: <span x-text="movie?.genre"></span></p>
-            <p>Director: <span x-text="movie?.director"></span></p>
-            <p>Actors: <span x-text="movie?.actors"></span></p>
-            <p>Description: <span x-text="movie?.description"></span></p>
+            <p><span x-text="Title: + ' ' + movie?.name"></span></p>
+            <p><span x-text="Year: + ' ' +movie?.year"></span></p>
+            <p><span x-text="Genre: + ' ' +movie?.genre"></span></p>
+            <p><span x-text="Director: + ' ' +movie?.director"></span></p>
+            <p><span x-text="Actors: + ' ' +movie?.actors"></span></p>
+            <p><span x-text="Description: + ' ' + movie?.description"></span></p>
         </div> 
     </div>
     </div>
@@ -94,4 +94,4 @@
     </div>
 </div>
 </body>
-</html>
+</html> 
