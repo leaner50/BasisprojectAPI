@@ -37,27 +37,31 @@ Url: https://leaner50.github.io/BasisprojectAPI
 
 ## Working API pictures using Postman
 
-- screenshot of the API docs
-![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-api-docs.png)
-
 - Screenshot of the API when it is used to display all the movies
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-all-movies.png)
 
 - Screenshot of the API when it is used to display the movie with the given id
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-search-movie-by-id.png)
 
 - Screenshot of the API when it is used to display the movie with the given id but the id is not found
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-search-movie-by-id-id-not-found.png)
 *Screenshot of the API when it is used to display the movies with the given genre
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-search-all-movies-with-that-genre.png)
 
 - Screenshot of the API when it is used to display the movies with the given genre but the genre is not found
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-search-all-movies-with-that-genre-if-genre-not-found.png)
 
 - Screenshot of the API when it is used to create a new movie
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-add-new-movie.png)
 
 - Screenshot of the API when it is used to create a new movie but the movie already exists
+
 ![image](https://github.com/leaner50/BasisprojectAPI/blob/main/img/screencapture-postman-add-new-movie-already-exists.png)
 
 ## Screenshot of the API docs:
