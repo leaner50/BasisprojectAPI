@@ -1,6 +1,6 @@
 version: "3.9"
 services:
  movies-service:
-  image: r0889356/BasisprojectAPI
+  image: r0889356/basisprojectapi
   ports:
     - "8000:8000"
